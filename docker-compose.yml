@@ -1,0 +1,70 @@
+version: '3'
+
+# networks:
+#   elk:
+
+volumes:
+  elasticsearch:
+    driver: local
+
+services:
+
+    web:
+        build: ./web
+
+        environment:
+            - APACHE_RUN_USER=#1000
+        #       DB_HOST : mysql
+        #       DB_DATABASE: app
+        #       DB_USERNAME: root
+        #       DB_PASSWORD: root
+        #       SCOUT_DRIVER: elastic
+        #       SCOUT_ELASTIC_HOST: elastic:9200
+        
+        volumes:
+            - ${APP_PATH_HOST}:${APP_PATH_CONTAINER} 
+        ports:
+            - 7080:80
+        working_dir: ${APP_PATH_CONTAINER}
+        # command:  
+        #         - "php artisan key:generate"
+
+        #         - "php artisan db:create admin_twlaravel"
+        #         - "php artisan migration"
+        #         - "php artisan migration"
+
+    elasticsearch:
+        environment:
+          http.host: 0.0.0.0
+          transport.host: 127.0.0.1
+          # network.host: 127.0.0.1
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+        container_name: elasticsearch
+        # networks: elk: null
+        ports:
+        - 9200:9200
+        - 9300:9300
+        restart: unless-stopped
+        volumes:
+        - elasticsearch:/usr/share/elasticsearch/data:rw
+
+    db:
+        image: mariadb
+        restart: always
+        environment: 
+              MYSQL_ROOT_PASSWORD: 123456
+        volumes:
+          - ${DB_PATH_HOST}:/var/lib/mysql
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:  
+          - 6080:8080
+
+    composer:
+        image: composer:1.9
+        volumes:
+           - ${APP_PATH_HOST}:${APP_PATH_CONTAINER} 
+        working_dir: ${APP_PATH_CONTAINER}
+        command: composer install
