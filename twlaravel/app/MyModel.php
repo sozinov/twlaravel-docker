@@ -22,15 +22,28 @@
 
     delete index
     curl -XDELETE localhost:9200/my_index
-
     create index class
+====================================================================
+
+    - клонируем репозиторий с докер проектом в свою папку 
+    git clone https://github.com/sozinov/twlaravel-docker.git
+
+    -агрегирует выход каждого контейнера. При выходе из команды, все контейнеры останавливаются. Выполнение команды
+     docker-compose up
+    -запускает контейнеры в фоновом режиме и оставляет их работать
+     docker-compose up -d
 
 
+    -
 
-    список образов 
-    docker images -a
+    -останаливаем все контейнеры
+     docker kill $(docker ps -q)
+    -удалить все остановленные контейнеры 
+     docker rm $(docker ps -a -q)
+    - удаляем все образы
+    docker rmi $(docker images -q)
+    
 
-    docker-compose up --build
 
 
  */
