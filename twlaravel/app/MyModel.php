@@ -29,19 +29,20 @@
     git clone https://github.com/sozinov/twlaravel-docker.git
 
     -агрегирует выход каждого контейнера. При выходе из команды, все контейнеры останавливаются. Выполнение команды
-     docker-compose up
+     docker-compose up --build
     -запускает контейнеры в фоновом режиме и оставляет их работать
      docker-compose up -d
 
 
-    -
+    -войти в контейнер 
+    docker-compose exec web bash
 
     -останаливаем все контейнеры
      docker kill $(docker ps -q)
     -удалить все остановленные контейнеры 
      docker rm $(docker ps -a -q)
     - удаляем все образы
-    docker rmi $(docker images -q)
+     sudo docker rmi --force $(docker images -q)
     
 
 

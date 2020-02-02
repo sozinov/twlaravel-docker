@@ -11,20 +11,19 @@ services:
 
     web:
         build: ./web
+       # environment:
+        #    - APACHE_RUN_USER=#1000
 
         environment:
-            - APACHE_RUN_USER=#1000
-        #       DB_HOST : mysql
-        #       DB_DATABASE: app
-        #       DB_USERNAME: root
-        #       DB_PASSWORD: root
-        #       SCOUT_DRIVER: elastic
-        #       SCOUT_ELASTIC_HOST: elastic:9200
+          - APACHE_RUN_USER=#1000
+          - APACHE_RUN_GROUP=#1000
         
+        container_name: laravel-app
         volumes:
             - ${APP_PATH_HOST}:${APP_PATH_CONTAINER} 
         ports:
             - 7080:80
+
         working_dir: ${APP_PATH_CONTAINER}
         # command:  
         #         - "php artisan key:generate"
