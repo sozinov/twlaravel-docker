@@ -1,5 +1,5 @@
 
-<p><strong>Установка на Linux:</strong><br />1. Устанавливаем docker и docker-composer лоя вашего дистрибутива Linux</p>
+<p><strong>Установка на Linux:</strong><br />1. Устанавливаем docker и docker-composer для вашего дистрибутива Linux</p>
 <p><a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a></p>
 <p><a href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p>
 <p><br />2. Переходиv в любую папку пльзователя и клонируем репозиторий проекта с гитхаб<br />&nbsp; &nbsp;<em>git clone <a href="https://github.com/sozinov/twlaravel-docker.git">https://github.com/sozinov/twlaravel-docker.git</a></em></p>
